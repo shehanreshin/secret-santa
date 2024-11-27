@@ -33,7 +33,7 @@ const Dashboard = () => {
     let count = 0;
 
     if (data != null && count == 0) {
-      axios.get(`http://localhost:3000/api/users/email/${data.user.email}`).then(res => setUser(res.data), count++)
+      axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}api/users/email/${data.user.email}`).then(res => setUser(res.data), count++)
     }
 
   }, [data]);
@@ -42,7 +42,7 @@ const Dashboard = () => {
   function getSecretSanta() {
     if (user) {
       axios
-        .post("http://localhost:3000/api/draw",{
+        .post(`${process.env.NEXT_PUBLIC_BASE_URL}api/draw`,{
           giver: user.id,
         })
         .then((res) => {
@@ -79,12 +79,12 @@ const Dashboard = () => {
           <Image src={logo} className=' w-64 p-4 sm:hidden' alt='tecciance logo'/>
             <div className="flex flex-col items-center justify-center flex-grow">
               <h1 className='text-white text-4xl text-center font-bold'>{assign?`${'Get a gift for'}`:``}</h1>
-              <h1 className="text-white text-4xl text-center font-bold">{assign?`${assign.takerName}`:`We wish you a merry Christmas`}</h1>
+              <h1 className="text-white text-4xl text-center font-bold">{assign?`${assign.takerName}`:`We wish you a merry christmas`}</h1>
             </div>
 
             <div className='mb-5'>
               <div class="centerer">
-                <button class="button" onClick={getSecretSanta}>Time to Choose!</button>
+                <button class="button" disabled={assign} onClick={getSecretSanta}>Time to Choose!</button>
               </div>
             </div>
           </div>

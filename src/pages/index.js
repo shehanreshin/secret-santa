@@ -12,9 +12,9 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main } style={{ backgroundImage: `url(${background.src})` }}>
+      <main className={styles.main} style={{ backgroundImage: `url(${background.src})` }}>
         <div className={styles.loginCard}>
-          <h1 className=' font-sans text-2xl'>Welcome To Tecciance Secret Santa Click below to Login</h1>
+          <h1 className=' font-sans text-2xl max-md:text-lg'>Welcome To Tecciance Secret Santa Click below to Login</h1>
           <button
             className={styles.actionButton}
             onClick={() => {
