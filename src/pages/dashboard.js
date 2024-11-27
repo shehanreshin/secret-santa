@@ -22,7 +22,7 @@ const Dashboard = () => {
   const { data, status } = useSession();
 
   const [user, setUser] = useState(null);
-  const[assign,setAssign]=useState(null);
+  const [assign, setAssign] = useState(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -40,46 +40,47 @@ const Dashboard = () => {
 
 
   function getSecretSanta() {
-    if (user) {
-      axios
-        .post(`${process.env.NEXT_PUBLIC_BASE_URL}api/draw`,{
-          giver: user.id,
-        })
-        .then((res) => {
-          setAssign(res.data);
-
-        })
-        .catch((error) => {
-          
-        });
-    } else {
-      router.push("/");
-    }
+      if (user) {
+        axios
+          .post(`${process.env.NEXT_PUBLIC_BASE_URL}api/draw`, {
+            giver: user.id,
+          })
+          .then((res) => {
+            setAssign(res.data);
+  
+          })
+          .catch((error) => {
+            console.log(error);
+              setAssign(error.response.data)
+          });
+      } else {
+        getSecretSanta();
+      }
   }
 
 
- console.log(assign)
+  console.log(assign)
   return (
-    
+
     <div>
-      
+
       <div className="w-full h-screen flex backdrop-blur-sm bg-white/50 !overflow-y-hidden" data-aos="fade-down">
-        
+
         <div className="w-1/3 bg-cover bg-center overflow-hidden max-sm:hidden" style={{ backgroundImage: `url(${rocket.src})` }}>
-          <ConfettiExplosion duration={10000}/>
+          <ConfettiExplosion duration={10000} />
           <div className="w-full h-full backdrop-blur-sm bg-white/10">
-              <Image src={logo} className=' w-64 p-4 z-10' alt='tecciance logo'/>
+            <Image src={logo} className=' w-64 p-4 z-10' alt='tecciance logo' />
           </div>
         </div>
 
-        
+
         <div className="w-1/3 bg-cover bg-center overflow-hidden max-sm:w-screen h-screen" style={{ backgroundImage: `url(${santa.src})` }}>
           <div className="w-full h-full backdrop-blur-sm bg-black/30 flex flex-col justify-between items-center">
-          <ConfettiExplosion duration={10000} />
-          <Image src={logo} className=' w-64 p-4 sm:hidden' alt='tecciance logo'/>
+            <ConfettiExplosion duration={10000} />
+            <Image src={logo} className=' w-64 p-4 sm:hidden' alt='tecciance logo' />
             <div className="flex flex-col items-center justify-center flex-grow">
-              <h1 className='text-white text-4xl text-center font-bold'>{assign?`${'Get a gift for'}`:``}</h1>
-              <h1 className="text-white text-4xl text-center font-bold">{assign?`${assign.takerName}`:`We wish you a merry christmas`}</h1>
+              <h1 className='text-white text-4xl text-center font-bold'>{assign ? `${'Get a gift for'}` : ``}</h1>
+              <h1 className="text-white text-4xl text-center font-bold">{assign ? `${assign.takerName}` : `We wish you a merry christmas`}</h1>
             </div>
 
             <div className='mb-5'>
@@ -91,7 +92,7 @@ const Dashboard = () => {
         </div>
 
         <div className="w-1/3 bg-cover bg-center overflow-hidden max-sm:hidden" style={{ backgroundImage: `url(${tree.src})` }}>
-        <ConfettiExplosion duration={10000} />
+          <ConfettiExplosion duration={10000} />
           <div className="w-full h-full backdrop-blur-sm bg-white/10">
           </div>
         </div>
