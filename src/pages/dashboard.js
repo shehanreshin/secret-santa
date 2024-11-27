@@ -23,6 +23,7 @@ const Dashboard = () => {
 
   const [user, setUser] = useState(null);
   const [assign, setAssign] = useState(null);
+  const[isDisabled,setIsDisabled] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -32,8 +33,10 @@ const Dashboard = () => {
     });
     let count = 0;
 
-    if (data != null && count == 0) {
-      axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}api/users/email/${data.user.email}`).then(res => setUser(res.data), count++)
+    if (data && count == 0) {
+      console.log(data.user.email)
+      axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}api/users/email/${data.user.email.toLowerCase()}`).then(res => setUser(res.data), count++)
+      
     }
 
   }, [data]);
@@ -41,6 +44,7 @@ const Dashboard = () => {
 
   function getSecretSanta() {
       if (user) {
+        setIsDisabled(true);
         axios
           .post(`${process.env.NEXT_PUBLIC_BASE_URL}api/draw`, {
             giver: user.id,
@@ -54,6 +58,7 @@ const Dashboard = () => {
               setAssign(error.response.data)
           });
       } else {
+        setIsDisabled(true);
         getSecretSanta();
       }
   }
@@ -82,10 +87,10 @@ const Dashboard = () => {
               <h1 className='text-white text-4xl text-center font-bold'>{assign ? `${'Get a gift for'}` : ``}</h1>
               <h1 className="text-white text-4xl text-center font-bold">{assign ? `${assign.takerName}` : `We wish you a merry christmas`}</h1>
             </div>
-
-            <div className='mb-5'>
+            
+            <div className={`mb-5 ${isDisabled?' hidden':''}`}>
               <div class="centerer">
-                <button class="button" disabled={assign} onClick={getSecretSanta}>Time to Choose!</button>
+                <button class="button" disabled={isDisabled} onClick={getSecretSanta}>Time to Choose!</button>
               </div>
             </div>
           </div>
