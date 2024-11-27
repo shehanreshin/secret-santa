@@ -32,48 +32,30 @@ export default async function handler(req, res) {
       .eq('giver', giver)
       .single()
 
-    if (giverError) {
-      throw giverError
-    }
-
     if (existingGiver) {
-      const takerId = existingGiver.taker
-      
+      const takerId = existingGiver.taker;
+
       const {data: takerDetails, error: takerError } = await supabase
       .from('user')
       .select('*')
       .eq('id', takerId)
       .single()
 
-      return res.status(200).json({
-        message: 'You are already a taker',
-        takerId: takerDetails.id,
-        takerName: takerDetails.name,
-      })
-    }
+      if (takerError) throw takerError;
 
-    if (existingGiver?.length > 0) {
+      const takerName = takerDetails.name
+
       return res.status(400).json({ 
-        error: 'This giver is already assigned',
-        takerId: null,
-        takerName: null
+        error: 'You have already drawn your taker',
+        takerId: existingGiver.taker,
+        takerName: takerName,
       })
     }
 
-    // Get the giver ID of the person who has given to our current giver (if exists)
-    const { data: giverToExclude, error: excludeError } = await supabase
-      .from('draw')
-      .select('giver')
-      .eq('taker', giver)
-      .single()
-
-    if (excludeError && excludeError.code !== 'PGRST116') throw excludeError // Ignore "no rows returned" error
-
-    // Get all existing takers
     const { data: existingDraws, error: drawError } = await supabase
       .from('draw')
       .select('taker')
-    
+
     if (drawError) throw drawError
 
     // Create a set of existing taker IDs for faster lookup
@@ -85,8 +67,7 @@ export default async function handler(req, res) {
       .select('id, name')
       .not('id', 'in', `(${Array.from(existingTakerIds).join(',')})`)
       .neq('id', giver)
-      .neq('id', giverToExclude?.giver || 'none') // If giverToExclude is null, use 'none' to not affect the query
-
+    
     if (userError) throw userError
 
     if (!eligibleUsers?.length) {
