@@ -20,7 +20,7 @@ export default function Home() {
             onClick={() => {
               signIn(
                 'azure-ad',
-                { callbackUrl: '/dashboard' },
+                { callbackUrl: '/draw' },
                 { prompt: 'login' },
               );
             }}
