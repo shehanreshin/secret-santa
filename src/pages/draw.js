@@ -467,7 +467,7 @@ const Dashboard = () => {
                             backgroundColor: f.color,
                             boxShadow: `0 0 15px ${f.color}, 0 0 30px ${f.color}`,
                             transform: `rotate(${angle}deg) translateX(0)`,
-                            animation: `firework-expand 1s ease-out ${f.delay} forwards`
+                            animation: `firework-expand 1s ease-in-out ${f.delay} forwards`
                           }}
                         />
                       </div>
@@ -515,38 +515,25 @@ const Dashboard = () => {
         }
         @keyframes sleigh-ride {
           0% { 
-            transform: translateX(-200px) translateY(20px) rotate(0deg); 
-            opacity: 0; 
+            transform: translateX(-300px) translateY(20px) scaleX(1); 
           }
           10% { 
-            opacity: 1; 
+            transform: translateX(-300px) translateY(20px) scaleX(1); 
           }
-          20% { 
-            transform: translateX(15vw) translateY(-5vh) rotate(5deg); 
-            opacity: 1; 
-          }
-          35% { 
-            transform: translateX(40vw) translateY(-8vh) rotate(8deg); 
-            opacity: 1; 
+          40% { 
+            transform: translateX(calc(100vw + 50px)) translateY(20px) scaleX(1); 
           }
           50% { 
-            transform: translateX(70vw) translateY(-10vh) rotate(10deg); 
-            opacity: 1; 
+            transform: translateX(calc(100vw + 50px)) translateY(20px) scaleX(-1); 
           }
-          65% { 
-            transform: translateX(90vw) translateY(-5vh) rotate(5deg); 
-            opacity: 1; 
-          }
-          80% { 
-            transform: translateX(95vw) translateY(5vh) rotate(-5deg); 
-            opacity: 1; 
+          60% { 
+            transform: translateX(calc(100vw + 50px)) translateY(20px) scaleX(-1); 
           }
           90% { 
-            opacity: 1; 
+            transform: translateX(-300px) translateY(20px) scaleX(-1); 
           }
           100% { 
-            transform: translateX(calc(100vw + 200px)) translateY(20px) rotate(0deg); 
-            opacity: 0; 
+            transform: translateX(-300px) translateY(20px) scaleX(1); 
           }
         }
         @keyframes reindeer-jump {
@@ -771,7 +758,7 @@ const Dashboard = () => {
         }
   .animate-fall { animation: fall linear infinite; will-change: transform; }
         .animate-float { animation: float linear infinite; }
-        .animate-sleigh-ride { animation: sleigh-ride 12s linear infinite; }
+        .animate-sleigh-ride { animation: sleigh-ride 18s ease-in-out infinite; }
         .animate-reindeer-jump { animation: reindeer-jump 0.6s ease-in-out infinite; }
         .animate-santa-wave { 
           transform-origin: bottom center;
