@@ -230,6 +230,16 @@ const Dashboard = () => {
               Tecciance Christmas 2025
               <Sparkles size={20} className="text-yellow-300" />
             </p>
+            {user && (
+              <div className="mt-6 p-4 bg-white/10 rounded-xl border border-white/20 backdrop-blur-sm">
+                <p className="text-2xl text-white font-semibold animate-fade-in">
+                  🎄 Welcome, {user.name}! 🎄
+                </p>
+                <p className="text-lg text-white/70 mt-1">
+                  Ready to spread some holiday cheer?
+                </p>
+              </div>
+            )}
           </div>
 
           {/* Main Card */}
