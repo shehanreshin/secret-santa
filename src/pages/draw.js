@@ -28,7 +28,21 @@ const Dashboard = () => {
  
     if (data && count == 0) {
       console.log(data.user.email)
-      axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}api/users/email/${data.user.email.toLowerCase()}`).then(res => setUser(res.data), count++)
+      axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}api/users/email/${data.user.email.toLowerCase()}`).then(res => {
+        setUser(res.data);
+        // Check if user has already drawn
+        axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}api/draw/get-taker?giver=${res.data.id}`)
+          .then(drawRes => {
+            setAssign(drawRes.data);
+          })
+          .catch(drawError => {
+            // If 404, user hasn't drawn yet, keep assign as null
+            if (drawError.response?.status !== 404) {
+              console.error('Error checking draw status:', drawError);
+            }
+          });
+        count++;
+      });
     }
   }, [data]);
 
@@ -112,7 +126,12 @@ const Dashboard = () => {
           })
           .catch((error) => {
             console.log(error);
-            setAssign(error.response.data)
+            // If user has already drawn, set assign to the taker details from error response
+            if (error.response?.status === 400 && error.response.data?.takerId) {
+              setAssign(error.response.data);
+            } else {
+              setIsDisabled(false); // Re-enable button if it was a real error
+            }
           });
       } else {
         setIsDisabled(true);
@@ -237,7 +256,7 @@ const Dashboard = () => {
                     </p>
                   </div>
 
-                  {!isDisabled && (
+                  {!isDisabled && !assign && (
                     <button
                       onClick={getSecretSanta}
                       disabled={wait}
