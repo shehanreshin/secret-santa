@@ -43,6 +43,10 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cdefs%3E%3Cfilter id='glow' x='-50%25' y='-50%25' width='200%25' height='200%25'%3E%3CfeGaussianBlur stdDeviation='3' result='coloredBlur'/%3E%3CfeMerge%3E%3CfeMergeNode in='coloredBlur'/%3E%3CfeMergeNode in='SourceGraphic'/%3E%3C/feMerge%3E%3C/filter%3E%3Cstyle%3E.star%7Bfill:%23FFD700;%7D.ornament%7Bstroke:%23FFFFFF;stroke-width:1;%7D.tree%7Bfill:%23FFFFFF;%7D%3C/style%3E%3C/defs%3E%3Cg filter='url(%23glow)' transform='rotate(-45 20 20)'%3E%3Cpolygon points='20,5 17,12 23,12' class='tree'/%3E%3Cpolygon points='20,12 13,22 27,22' class='tree'/%3E%3Cpolygon points='20,22 10,32 30,32' class='tree'/%3E%3Crect x='19' y='32' width='2' height='4' class='tree'/%3E%3Cpolygon points='20,2 18,5 22,5' class='star'/%3E%3Ccircle cx='15' cy='15' r='2' fill='%23FF0000' class='ornament'/%3E%3Ccircle cx='25' cy='15' r='2' fill='%23FF0000' class='ornament'/%3E%3Ccircle cx='12' cy='25' r='2' fill='%23FFD700' class='ornament'/%3E%3Ccircle cx='28' cy='25' r='2' fill='%23FFD700' class='ornament'/%3E%3Ccircle cx='20' cy='18' r='2' fill='%230000FF' class='ornament'/%3E%3Ccircle cx='14' cy='27' r='2' fill='%23FF69B4' class='ornament'/%3E%3Ccircle cx='26' cy='27' r='2' fill='%23FF69B4' class='ornament'/%3E%3Ccircle cx='9' cy='20' r='1.5' fill='%2300FF00'/%3E%3Ccircle cx='31' cy='20' r='1.5' fill='%2300FF00'/%3E%3Ccircle cx='16' cy='30' r='1.5' fill='%23FF4500'/%3E%3Ccircle cx='24' cy='30' r='1.5' fill='%23FF4500'/%3E%3C/g%3E%3C/svg%3E") 20 20, auto;
+}
+
 .parallax {
   /* The image used */
   background-image: url('../../public/1.gif');
@@ -132,6 +136,7 @@ P.S. через border-image не прокатило: не поддержива�
 	   -moz-transition: 500ms linear;
 	     -o-transition: 500ms linear;
 					transition: 500ms linear;
+	cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cdefs%3E%3Cfilter id='glow-strong'%3E%3CfeGaussianBlur stdDeviation='4' result='coloredBlur'/%3E%3CfeMerge%3E%3CfeMergeNode in='coloredBlur'/%3E%3CfeMergeNode in='SourceGraphic'/%3E%3C/feMerge%3E%3C/filter%3E%3C/defs%3E%3Cg filter='url(%23glow-strong)'%3E%3Crect x='4' y='8' width='24' height='16' rx='3' fill='%23FF0000' stroke='%23FFFFFF' stroke-width='2'/%3E%3Crect x='8' y='12' width='16' height='8' fill='%23FFD700'/%3E%3Cpolygon points='16,4 13,10 19,10' fill='%23FFFFFF'/%3E%3Cpolygon points='16,10 10,18 22,18' fill='%23FFFFFF'/%3E%3Cpolygon points='16,18 8,24 24,24' fill='%23FFFFFF'/%3E%3Crect x='15' y='24' width='2' height='4' fill='%238B4513'/%3E%3Ccircle cx='11' cy='14' r='1.5' fill='%23FF69B4'/%3E%3Ccircle cx='21' cy='14' r='1.5' fill='%230000FF'/%3E%3C/g%3E%3C/svg%3E") 16 16, pointer;
 }
 
 .button::before {
@@ -147,7 +152,7 @@ P.S. через border-image не прокатило: не поддержива�
 	url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAXCAYAAACFxybfAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAodJREFUeNrsVb1rWlEUv2pN/GqspKRSKFYXWzEloIWif0Fn6dJChQ7OQil0qd3EzcEpg0OgdHDr4CQODk7VRlLMEIVqApX4We0zflR9/Z1Ui4T34ksaaAYP/Hzc673n/M6550PG8zz73yKjn0wm83fDYDAwo9HINBrNnwOQg4MDs0ql2lQqlfdAWont7ng8Pjw+Ps44nc4G1pI9EXWaSOzt7TGO42aH5Pv7+08ajUZ0MBiUeXEZd7vdL5VK5fX29rZ+5tQiEmdxKrlcjsEYczgcynK5/BKKv/IXFNz/XiqVXkHdjUuRIA9SqdRD8or/R8Ez9fr9fqHVakUR4c2z0REjIQuHw2ZcrPBXLCA0RHTezEdHjIQqkUhEr9I4HOILhQLf6/VoOUFEvDMiQiToDx1Cdz+bzZ6bUFarlel0OkkVUK/XWbvdPoVer5fh3ntsfwJ+CJ2XA4p0Op1bpBgJyxDehQQ6nQ5DZXHBYDBZq9V+EhFUndnr9drEqoc2bwJbwGPgtohuVSwWe2Gz2TZMJpNgRKi6qtUqg2EWj8dTgUDgo0KhWPN4PC70EvXOzs67fD6/S6kiRIKeZA1YJ2MiJNbdbvfTUCjkV6vVK2hcDF8GI2w0GrGTkxM2HA5PDxaLxSOfz/cWEfk81X0XIMMFgJJ/srBjCgk8IdcfuVyuZ36//7nFYtkQyAMumUzuRiKRD0jMFLa+AZOpYwqgB/ziBVqmVBKUO7eAB/R0WG/Z7XaTVqtdbTabHJL6EK2djBaBPHA0NSqpbUsiMUeEBgpF4Q5AbZrmSJ/yEWgBTaBNHl9kdkgmMUeG7qwAq9PqovceTA3zlxlgsuswyuXsGsiSxJLEkoSY/BZgAEjRodi+uBruAAAAAElFTkSuQmCC) no-repeat 100% 0;
 	
 }
-.button:hover {
+button:hover {
 	background: #a61715;
 	text-shadow: 0 1px 2px rgba(0,0,0,0.75), 0 0 40px #FFF;
 	box-shadow:
@@ -155,7 +160,7 @@ P.S. через border-image не прокатило: не поддержива�
 		inset 0 0 6px #da3b2c, /* inner glow */
 		inset 0 80px 80px -40px #dd4330, /* gradient */
 		1px 1px 3px rgba(0,0,0,0.75); /* shadow */
-		
+	cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cdefs%3E%3Cfilter id='gift-beauty'%3E%3CfeGaussianBlur stdDeviation='1.5' result='coloredBlur'/%3E%3CfeMerge%3E%3CfeMergeNode in='coloredBlur'/%3E%3CfeMergeNode in='SourceGraphic'/%3E%3C/feMerge%3E%3C/filter%3E%3ClinearGradient id='ribbonGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23FFD700;stop-opacity:1' /%3E%3Cstop offset='30%25' style='stop-color:%23FFA500;stop-opacity:1' /%3E%3Cstop offset='70%25' style='stop-color:%23FFD700;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23FFFFFF;stop-opacity:1' /%3E%3C/linearGradient%3E%3CradialGradient id='shineGrad' cx='25%25' cy='25%25' r='60%25'%3E%3Cstop offset='0%25' style='stop-color:%23FFFFFF;stop-opacity:0.9' /%3E%3Cstop offset='50%25' style='stop-color:%23FFFFFF;stop-opacity:0.4' /%3E%3Cstop offset='100%25' style='stop-color:%23FFFFFF;stop-opacity:0' /%3E%3C/radialGradient%3E%3CradialGradient id='sparkleGrad' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' style='stop-color:%23FFD700;stop-opacity:0.8' /%3E%3Cstop offset='100%25' style='stop-color:%23FFD700;stop-opacity:0' /%3E%3C/radialGradient%3E%3C/defs%3E%3Cg filter='url(%23gift-beauty)'%3E%3Crect x='5' y='9' width='22' height='14' rx='2' fill='%23B91C1C' stroke='%23FFFFFF' stroke-width='1'/%3E%3Crect x='9' y='13' width='14' height='6' fill='%23FED7AA'/%3E%3Crect x='15' y='5' width='2' height='8' fill='url(%23ribbonGrad)'/%3E%3Crect x='13' y='3' width='6' height='2' fill='url(%23ribbonGrad)'/%3E%3Cpath d='M16 3 L13.5 7 L18.5 7 Z' fill='%23EC4899'/%3E%3Ccircle cx='10' cy='14' r='0.8' fill='%23FFFFFF'/%3E%3Ccircle cx='22' cy='14' r='0.8' fill='%23FFFFFF'/%3E%3Ccircle cx='16' cy='16' r='0.8' fill='%23FFFFFF'/%3E%3Cpath d='M7 11 Q5 9 7 7' stroke='url(%23ribbonGrad)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M25 11 Q27 9 25 7' stroke='url(%23ribbonGrad)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3Crect x='5' y='9' width='22' height='14' rx='2' fill='url(%23shineGrad)' opacity='0.6'/%3E%3Ccircle cx='8' cy='12' r='1.5' fill='url(%23sparkleGrad)' opacity='0.7'/%3E%3Ccircle cx='24' cy='12' r='1.5' fill='url(%23sparkleGrad)' opacity='0.7'/%3E%3Ccircle cx='16' cy='20' r='1' fill='url(%23sparkleGrad)' opacity='0.8'/%3E%3C/g%3E%3C/svg%3E") 16 16, auto;
 }
 .button:focus {
 	outline: none; /*FF*/
