@@ -34,6 +34,11 @@ const Dashboard = () => {
         axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}api/draw/get-taker?giver=${res.data.id}`)
           .then(drawRes => {
             setAssign(drawRes.data);
+            // Show celebration effects for existing users too!
+            setTimeout(() => {
+              setShowFireworks(true);
+              setShowConfetti(true);
+            }, 1000); // Small delay to let the page load first
           })
           .catch(drawError => {
             // If 404, user hasn't drawn yet, keep assign as null
@@ -115,6 +120,7 @@ const Dashboard = () => {
   function getSecretSanta() {
       if (user) {
         setIsDisabled(true);
+        setAssign({ takerName: "Loading..." }); // Show loading immediately
         setShowFireworks(true); // Start fireworks immediately when button is clicked
         axios
           .post(`${process.env.NEXT_PUBLIC_BASE_URL}api/draw`, {
@@ -131,6 +137,7 @@ const Dashboard = () => {
               setAssign(error.response.data);
             } else {
               setIsDisabled(false); // Re-enable button if it was a real error
+              setAssign(null); // Reset assign state on error
             }
           });
       } else {
@@ -252,7 +259,38 @@ const Dashboard = () => {
 
             {/* Content */}
             <div className="text-center space-y-8">
-              {!assign ? (
+              {assign ? (
+                <div className="space-y-6 animate-reveal">
+                  <div className="text-6xl animate-bounce">🎁</div>
+                  <h3 className="text-3xl text-green-300 font-semibold">
+                    Your Secret Santa Match
+                  </h3>
+                  <div className="bg-gradient-to-r from-red-500/30 to-green-500/30 rounded-2xl p-4 md:p-8 border-2 border-white/30 min-h-[200px] flex flex-col justify-center">
+                    <p className="text-xl md:text-2xl text-white/80 mb-3">Get a gift for:</p>
+                    <div className="w-full overflow-hidden">
+                      {assign.takerName === "Loading..." ? (
+                        <div className="flex flex-col items-center justify-center gap-6 text-white">
+                          <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-white"></div>
+                          <div className="text-2xl md:text-3xl font-bold text-white animate-pulse text-center">
+                            🎄 Drawing your match... 🎁
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="text-center">
+                          <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-red-200 to-green-200 animate-shimmer break-words overflow-wrap-anywhere leading-tight px-2 py-2 max-w-full">
+                            {assign.takerName}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  {assign.takerName !== "Loading..." && (
+                    <p className="text-xl text-white/70 italic">
+                      ✨ Make it special and spread the Christmas cheer! ✨
+                    </p>
+                  )}
+                </div>
+              ) : (
                 <>
                   <div className="space-y-4">
                     <h2 className="text-4xl md:text-5xl font-bold text-white animate-bounce-slow">
@@ -287,22 +325,6 @@ const Dashboard = () => {
                     </button>
                   )}
                 </>
-              ) : (
-                <div className="space-y-6 animate-reveal">
-                  <div className="text-6xl animate-bounce">🎁</div>
-                  <h3 className="text-3xl text-green-300 font-semibold">
-                    Your Secret Santa Match
-                  </h3>
-                  <div className="bg-gradient-to-r from-red-500/30 to-green-500/30 rounded-2xl p-8 border-2 border-white/30">
-                    <p className="text-2xl text-white/80 mb-3">Get a gift for:</p>
-                    <h2 className="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 via-red-200 to-green-200 animate-shimmer">
-                      {assign.takerName}
-                    </h2>
-                  </div>
-                  <p className="text-xl text-white/70 italic">
-                    ✨ Make it special and spread the Christmas cheer! ✨
-                  </p>
-                </div>
               )}
             </div>
           </div>
