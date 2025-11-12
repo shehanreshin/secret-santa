@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Secret Santa | Tecciance</title>
+        <title>Tecciance | Secret Santa</title>
         <meta name="description" content="Tecciance Secret Santa Gift Exchange" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
