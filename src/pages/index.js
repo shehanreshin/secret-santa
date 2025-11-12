@@ -141,7 +141,7 @@ export default function Home() {
                 >
                   <span className="relative z-10 flex items-center gap-3">
                     <Gift className="group-hover:rotate-12 transition-transform" size={28} />
-                    Let's Get Started! 🎁
+                    Let&apos;s Get Started! 🎁
                     <Sparkles className="group-hover:rotate-12 transition-transform" size={28} />
                   </span>
                   <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
