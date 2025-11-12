@@ -262,7 +262,7 @@ const Dashboard = () => {
                       Ready to discover your Secret Santa match?
                     </p>
                     <p className="text-lg text-white/70">
-                      Click the button below to reveal who you'll be gifting this Christmas!
+                      Click the button below to reveal who you&apos;ll be gifting this Christmas!
                     </p>
                   </div>
 
